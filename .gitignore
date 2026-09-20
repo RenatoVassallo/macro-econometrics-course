@@ -1,0 +1,43 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Entornos y secretos
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Slides
+slides/
+figures/
+papers/
+data/
+output/
