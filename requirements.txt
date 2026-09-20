@@ -1,14 +1,28 @@
-# Alternativa a `uv sync` para instalar el entorno con pip.
+# Ruta alternativa a `uv sync`, para instalar con pip en un entorno virtual.
+# Requiere Python 3.11:
+#   python3.11 -m venv .venv
+#   source .venv/bin/activate          (Windows: .\.venv\Scripts\Activate.ps1)
+#   python -m pip install -r requirements.txt
+#
+# Debe reflejar las dependencias de pyproject.toml.
+
+# Entorno de trabajo
 ipykernel>=6.29,<8
 ipython>=8.20,<10
+ipywidgets>=8.1,<9
 jupyterlab>=4.2,<5
+
+# Cálculo y gráficos
+numpy>=2.2,<3
+pandas>=2.2,<3
+scipy>=1.15,<2
 matplotlib>=3.8,<4
-nbclient>=0.10,<1
-nbformat>=5.10,<6
-numpy>=1.26,<3
-pandas>=2.1,<3
-scipy>=1.11,<2
 statsmodels>=0.14.4,<0.15
 tqdm>=4.66,<5
-ipywidgets>=8.1,<9
+
+# Ejecución de notebooks desde script (uso del docente)
+nbclient>=0.10,<1
+nbformat>=5.10,<6
+
+# Toolbox del curso
 macropy @ https://github.com/RenatoVassallo/MacroPy/releases/download/0.2.0/macropy-0.2.0-py3-none-any.whl

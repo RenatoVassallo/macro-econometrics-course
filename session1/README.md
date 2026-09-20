@@ -11,8 +11,7 @@
 4. Pronósticos condicionales (Waggoner y Zha, 1999): la matriz de restricciones $A$ y dos escenarios
    para los precios de exportación.
 
-Todo usa datos hasta 2019. La exogeneidad de bloque y la pandemia pasan a la sesión 2; el material
-que ya estaba hecho quedó en `../session2/de_sesion1/`.
+Todo usa datos hasta 2019. La exogeneidad de bloque y la pandemia quedan para la sesión 2.
 
 ## Notación
 
@@ -26,20 +25,21 @@ castellano.
 
 ## Material
 
-- `bvar_peru_1_del_var_al_bvar.ipynb` (aplicación 1): VAR(2) bivariado en $x_t$ y $r_t$, 2002Q2 a
+- `session1_A_var_bvar.ipynb` (aplicación 1): VAR(2) bivariado en $x_t$ y $r_t$, 2002Q2 a
   2017Q4. Matrices a mano, MCO igual a máxima verosimilitud, $b_0$ y $H$ del prior de Minnesota,
   muestreador de Gibbs programado a mano y contraste con `MacroPy`.
-- `bvar_peru_2_pronostico.ipynb` (aplicación 2): modelo macrofiscal en $(x_t, y_t, r_t)'$. Densidad
+- `session1_B_forecasting.ipynb` (aplicación 2): modelo macrofiscal en $(x_t, y_t, r_t)'$. Densidad
   predictiva a mano (companion y Cholesky) contra `MacroPy` y el ECM, pronóstico 2018-2019 contra lo
   observado, la matriz $A$ de Waggoner y Zha armada a mano y verificada contra `MacroPy`, y dos
   escenarios de precios de exportación.
 - `macrofiscal_data.py`: descarga las series de la API del BCRP y actualiza el respaldo local.
-- `slides/session1_bvar.tex`: las diapositivas (beamer, 3 horas). La figura del apéndice sale del
-  notebook 2; `slides/figures/_sin_uso/` guarda figuras de versiones anteriores y `slides/_respaldo/`,
-  versiones anteriores del .tex.
-- `data/peru_macrofiscal_bcrp.csv`: niveles trimestrales de respaldo.
-- `_archivo_version_mensual/`: versión anterior de la sesión (modelo mensual de cinco variables).
-  Leer su `LEEME.md` antes de reutilizarla.
+- Las diapositivas (beamer, 3 horas) se distribuyen aparte. La figura del apéndice sale del
+  notebook B.
+- `data/peru_macrofiscal_bcrp.csv`: niveles trimestrales de respaldo, que se usan automáticamente si
+  la API del BCRP no responde.
+
+Los notebooks usan rutas relativas, así que hay que ejecutarlos desde esta carpeta. En VS Code eso ya
+viene configurado; desde la terminal, `cd session1` antes de abrir Jupyter.
 
 ## Series utilizadas (API del BCRP)
 

@@ -1,0 +1,35 @@
+{
+  "name": "Macroeconometria aplicada con Python",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11-bookworm",
+
+  // Se ejecuta una sola vez, al crear el codespace. Con prebuilds activados
+  // queda cacheado y el codespace abre en segundos.
+  "postCreateCommand": "pip install --user --no-cache-dir -r requirements.txt",
+
+  // El editor no se conecta hasta que la instalacion termine: evita que el
+  // alumno abra el notebook antes de que existan los paquetes.
+  "waitFor": "postCreateCommand",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        // Los notebooks usan rutas relativas (data/..., macrofiscal_data.py),
+        // asi que el kernel debe arrancar en la carpeta del notebook.
+        "jupyter.notebookFileRoot": "${fileDirname}",
+        "notebook.output.textLineLimit": 60,
+        "files.autoSave": "afterDelay"
+      }
+    },
+    "codespaces": {
+      // Solo aplica al cliente web de VS Code y solo la primera vez.
+      "openFiles": ["README.md", "session1/session1_A_var_bvar.ipynb"]
+    }
+  }
+}

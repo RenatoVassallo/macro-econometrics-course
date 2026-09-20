@@ -35,9 +35,11 @@ dist/
 # Jupyter
 .ipynb_checkpoints/
 
-# Slides
+# Diapositivas: se distribuyen aparte, no por el repo
 slides/
-figures/
+
+# Material de trabajo que no se distribuye
 papers/
-data/
 output/
+**/_respaldo/
+**/_sin_uso/
