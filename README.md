@@ -8,7 +8,7 @@ El código está en inglés y el texto, en castellano.
 
 | | Tema | Material |
 |:-|:-|:-|
-| 1 | Del VAR clásico al BVAR; pronósticos incondicionales y condicionales | [`session1/`](session1/) |
+| 1 | Del VAR clásico al BVAR; pronóstico, escenarios y la pandemia | [`session1/`](session1/) |
 
 ## Cómo empezar
 
@@ -34,47 +34,48 @@ Lo que edites vive en el codespace, no en tu computadora. Para conservar los
 cambios: `File → Download` sobre el notebook, o `git commit` y `git push` si
 trabajas sobre tu propio fork.
 
-### Opción B: en tu computadora, con `uv`
+### Opción B: en tu computadora, con un solo comando
 
-Es la vía moderna y la más rápida. Requiere [uv](https://docs.astral.sh/uv/)
-instalado.
+Necesitas tres cosas instaladas: **Python 3.11** (no 3.12 ni 3.13: MacroPy
+todavía no los soporta), **VS Code** y **git**. El paso a paso, con capturas,
+está en
+[Python + VS Code: a practical setup](https://renatovassallo.github.io/posts/python-vscode-practical-setup/).
+
+Después, clona el repositorio y ejecuta el script de instalación: crea el
+entorno, instala los paquetes, registra el kernel de Jupyter y comprueba que
+todo funciona.
+
+```bash
+git clone https://github.com/RenatoVassallo/macro-econometrics-course.git
+cd macro-econometrics-course
+bash setup_env.sh
+```
+
+En Windows con PowerShell, la última línea es `.\setup_env.ps1`. Si Windows se
+niega a ejecutarlo, primero:
+`Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. Desde Git Bash
+funciona `bash setup_env.sh` igual que en Mac.
+
+Si te falta Python 3.11, el script te lo dice y te da el enlace de descarga.
+Para reinstalar desde cero: `bash setup_env.sh --force`.
+
+Después, en VS Code: `Ctrl+Shift+P` (`Cmd+Shift+P` en Mac) →
+**Python: Select Interpreter** → el de `.venv`.
+
+> Si guardas el curso en OneDrive o Dropbox, pon el entorno fuera de la carpeta
+> sincronizada: un entorno son decenas de miles de archivos pequeños.
+> `VENV="$HOME/.venvs/macro-course" bash setup_env.sh`
+
+### Opción C: en tu computadora, con `uv`
+
+Si ya usas [uv](https://docs.astral.sh/uv/), esta es la vía más rápida y la que
+fija las versiones exactas de `uv.lock`, iguales para todos:
 
 ```bash
 git clone https://github.com/RenatoVassallo/macro-econometrics-course.git
 cd macro-econometrics-course
 uv sync
 ```
-
-`uv sync` crea el entorno en `.venv` con las versiones exactas de `uv.lock`, las
-mismas para todos. En VS Code: `Ctrl+Shift+P` (`Cmd+Shift+P` en Mac) →
-**Python: Select Interpreter** → el de `.venv`.
-
-### Opción C: en tu computadora, con `venv` y `pip`
-
-La vía clásica. Requiere **Python 3.11** instalado (no 3.12 ni 3.13: MacroPy
-todavía no los soporta).
-
-```bash
-git clone https://github.com/RenatoVassallo/macro-econometrics-course.git
-cd macro-econometrics-course
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-```
-
-En Windows, las dos últimas líneas son:
-
-```powershell
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
-
-Después, seleccionar el intérprete de `.venv` igual que en la opción B.
-
-¿Primera vez con Python, VS Code y entornos virtuales? El paso a paso completo,
-con capturas, está en
-[Python + VS Code: a practical setup](https://renatovassallo.github.io/posts/python-vscode-practical-setup/).
 
 ## Comprobar que todo funciona
 
@@ -104,4 +105,7 @@ responde, de modo que los notebooks corren siempre, también sin internet.
 
 ## Referencia
 
-Vassallo, R. (2026). *Macroeconometría Aplicada con Python*.
+Vassallo, R. (2026).
+[*Macroeconometría Aplicada con Python*](https://renatovassallo.github.io/MacroeconometricsBook/).
+Las diapositivas citan capítulo y sección del libro donde cada concepto se
+desarrolla; el libro se lee gratis en línea.

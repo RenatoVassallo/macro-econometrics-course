@@ -37,6 +37,7 @@ dist/
 
 # Diapositivas: se distribuyen aparte, no por el repo
 slides/
+data/
 
 # Material de trabajo que no se distribuye
 papers/
