@@ -6,12 +6,16 @@
    entre mínimos cuadrados (MCO) y máxima verosimilitud.
 2. Del prior a la posterior: prior de Minnesota para los coeficientes, inversa-Wishart para la
    covarianza y el muestreador de Gibbs.
-3. Pronóstico con la forma companion: el ECM se acumula con el horizonte y abre la banda; la densidad
-   predictiva bayesiana suma la incertidumbre de los parámetros (bandas al 68 y 95 %).
-4. Pronósticos condicionales (Waggoner y Zha, 1999): la matriz de restricciones $A$ y dos escenarios
-   para los precios de exportación.
+3. La densidad predictiva bayesiana: no hay fórmula cerrada sino trayectorias simuladas, un choque
+   nuevo por trimestre, y un *fan chart* cuyas bandas son percentiles de esas trayectorias
+   (10, 30, 50, 70 y 90 %).
+4. Pronósticos condicionales (Waggoner y Zha, 1999): imponer una senda y recuperar las demás.
+   Condicionar es proyectar.
+5. La pandemia: qué le hacen 2020 y 2021 a la persistencia y a $\Sigma$, y tres tratamientos
+   (descartar, dummies con prior y escalamiento de volatilidad de Lenza y Primiceri, 2022).
 
-Todo usa datos hasta 2019. La exogeneidad de bloque y la pandemia quedan para la sesión 2.
+Duración: unas 3 horas y 40 minutos. La exogeneidad de bloque y la identificación estructural quedan
+para la sesión 2.
 
 ## Notación
 
@@ -29,12 +33,14 @@ castellano.
   2017Q4. Matrices a mano, MCO igual a máxima verosimilitud, $b_0$ y $H$ del prior de Minnesota,
   muestreador de Gibbs programado a mano y contraste con `MacroPy`.
 - `session1_B_forecasting.ipynb` (aplicación 2): modelo macrofiscal en $(x_t, y_t, r_t)'$. Densidad
-  predictiva a mano (companion y Cholesky) contra `MacroPy` y el ECM, pronóstico 2018-2019 contra lo
-  observado, la matriz $A$ de Waggoner y Zha armada a mano y verificada contra `MacroPy`, y dos
-  escenarios de precios de exportación.
+  predictiva a mano contra `MacroPy`, pronóstico 2018-2019 contra lo observado, la matriz $A$ de
+  Waggoner y Zha armada a mano y verificada contra `MacroPy`, y dos escenarios de precios de
+  exportación.
+- `session1_C_pandemia.ipynb` (aplicación 3): muestra completa. Qué le hace la pandemia a la
+  persistencia y a la volatilidad, tres tratamientos comparados, tres *fan charts* lado a lado y la
+  respuesta al impulso bajo cada tratamiento.
 - `macrofiscal_data.py`: descarga las series de la API del BCRP y actualiza el respaldo local.
-- Las diapositivas (beamer, 3 horas) se distribuyen aparte. La figura del apéndice sale del
-  notebook B.
+- Las diapositivas (beamer) se distribuyen aparte. Las figuras salen de los notebooks.
 - `data/peru_macrofiscal_bcrp.csv`: niveles trimestrales de respaldo, que se usan automáticamente si
   la API del BCRP no responde.
 
