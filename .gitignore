@@ -17,6 +17,7 @@ env/
 .env.*
 !.env.example
 .claude/
+uv.lock
 
 # Python
 __pycache__/
