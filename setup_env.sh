@@ -97,5 +97,5 @@ else
   echo "  Para trabajar desde la terminal:  source .venv/bin/activate"
 fi
 echo "  En VS Code: Ctrl+Shift+P -> Python: Select Interpreter -> el de .venv"
-echo "  Y abra session1/session1_A_var_bvar.ipynb"
+echo "  Y abra session1/session1_var.ipynb"
 echo

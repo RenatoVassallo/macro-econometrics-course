@@ -44,17 +44,18 @@ def check_macropy():
 
 
 def check_data():
-    session = Path(__file__).parent / "session1"
-    sys.path.insert(0, str(session))
+    sys.path.insert(0, str(Path(__file__).parent))
     try:
-        from macrofiscal_data import load_levels, yoy_growth
-        levels, source = load_levels(session / "data" / "peru_macrofiscal_bcrp.csv")
-        growth = yoy_growth(levels)
+        from course_data import load, vintage, SERIES
+        df = load()
     except Exception as err:
-        print(BAD + f"no se pudieron cargar los datos: {err}")
+        print(BAD + f"no se pudo leer la base del curso: {err}")
         return False
-    print(OK + f"datos cargados desde {source.split('(')[0].strip()}, "
-          f"{len(growth)} trimestres hasta {growth.index[-1].date()}")
+    faltan = sorted(set(SERIES) - set(df.columns))
+    if faltan:
+        print(BAD + f"a la base le faltan series: {', '.join(faltan)}")
+        return False
+    print(OK + f"base del curso: {df.shape[1]} series, descargada el {vintage()}")
     return True
 
 
@@ -63,7 +64,7 @@ def main():
     results = [check_python(), check_packages(), check_macropy(), check_data()]
     print("-" * 46)
     if all(results):
-        print("Todo listo. Abre session1/session1_A_var_bvar.ipynb\n")
+        print("Todo listo. Abre session1/session1_var.ipynb\n")
         return 0
     print("Revisa los puntos marcados con [!!] y la sección "
           "'Si algo falla' del README.\n")

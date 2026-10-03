@@ -83,4 +83,4 @@ if ($LASTEXITCODE -ne 0) { Fatal "la comprobación falló; revise los puntos mar
 Titulo "Listo"
 Write-Host "  Para trabajar desde la terminal:  .\.venv\Scripts\Activate.ps1"
 Write-Host "  En VS Code: Ctrl+Shift+P -> Python: Select Interpreter -> el de .venv"
-Write-Host "  Y abra session1\session1_A_var_bvar.ipynb`n"
+Write-Host "  Y abra session1\session1_var.ipynb`n"

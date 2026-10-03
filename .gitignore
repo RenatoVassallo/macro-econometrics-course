@@ -38,10 +38,13 @@ dist/
 
 # Diapositivas: se distribuyen aparte, no por el repo
 slides/
-data/
+# La base del curso (data/ en la raíz) se versiona; las copias por sesión, no.
+/session*/data/
+session3/
 
 # Material de trabajo que no se distribuye
 papers/
 output/
+archive/
 **/_respaldo/
 **/_sin_uso/

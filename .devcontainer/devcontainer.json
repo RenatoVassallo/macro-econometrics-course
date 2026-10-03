@@ -20,8 +20,8 @@
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
-        // Los notebooks usan rutas relativas (data/..., macrofiscal_data.py),
-        // asi que el kernel debe arrancar en la carpeta del notebook.
+        // Los notebooks importan course_data.py desde la raiz con una ruta
+        // relativa (".."), asi que el kernel debe arrancar en la carpeta del notebook.
         "jupyter.notebookFileRoot": "${fileDirname}",
         "notebook.output.textLineLimit": 60,
         "files.autoSave": "afterDelay"
@@ -29,7 +29,7 @@
     },
     "codespaces": {
       // Solo aplica al cliente web de VS Code y solo la primera vez.
-      "openFiles": ["README.md", "session1/session1_A_var_bvar.ipynb"]
+      "openFiles": ["README.md", "session1/session1_var.ipynb"]
     }
   }
 }
