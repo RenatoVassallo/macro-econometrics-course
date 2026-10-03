@@ -8,7 +8,11 @@ El código está en inglés y el texto, en castellano.
 
 | | Tema | Material |
 |:-|:-|:-|
-| 1 | Del VAR clásico al BVAR; pronóstico, escenarios y la pandemia | [`session1/`](session1/) |
+| 1 | Presentación del curso y el modelo VAR: representación, estimación y pronóstico | [`session1/`](session1/) |
+| 2 | VAR bayesianos: prior de Minnesota, Gibbs, *fan charts*, escenarios y la pandemia | [`session2/`](session2/) |
+| 3 | VAR estructurales: identificación por ceros y por signos, IRF, FEVD y descomposición histórica | [`session3/`](session3/) |
+| 4 | VAR no lineales: Threshold VAR y TVP-VAR con volatilidad estocástica | próximamente |
+| 5 | Componentes no observados: tendencia, ciclo y brecha del producto | próximamente |
 
 ## Cómo empezar
 
@@ -68,8 +72,7 @@ Después, en VS Code: `Ctrl+Shift+P` (`Cmd+Shift+P` en Mac) →
 
 ### Opción C: en tu computadora, con `uv`
 
-Si ya usas [uv](https://docs.astral.sh/uv/), esta es la vía más rápida y la que
-fija las versiones exactas de `uv.lock`, iguales para todos:
+Si ya usas [uv](https://docs.astral.sh/uv/), esta es la vía más rápida:
 
 ```bash
 git clone https://github.com/RenatoVassallo/macro-econometrics-course.git
@@ -85,23 +88,39 @@ Cualquiera sea la opción elegida, esto lo confirma en dos segundos:
 python check_setup.py
 ```
 
-Revisa la versión de Python, los paquetes, MacroPy y la descarga de datos, y
-dice exactamente qué falta si algo no está.
+Revisa la versión de Python, los paquetes, MacroPy y la base de datos del
+curso, y dice exactamente qué falta si algo no está.
 
 ## Si algo falla
 
 | Síntoma | Causa y solución |
 |:-|:-|
 | `ModuleNotFoundError: No module named 'MacroPy'` | El notebook está usando otro intérprete. Seleccionar el kernel de `.venv` (arriba a la derecha en VS Code). |
-| `FileNotFoundError: data/peru_macrofiscal_bcrp.csv` | El kernel arrancó fuera de `session1/`. Abrir el notebook desde esa carpeta o ejecutar `import os; os.chdir("session1")`. |
+| `ModuleNotFoundError: No module named 'course_data'` | El kernel arrancó fuera de la carpeta de la sesión. Abrir el notebook desde ella; desde la terminal, `cd session1` antes de abrir Jupyter. |
 | El instalador rechaza `macropy` | La versión de Python no es 3.11. Verificar con `python --version`. |
-| Las series no se actualizan | La API del BCRP no respondió y se usó la copia local de `session1/data/`. El notebook lo avisa al cargar los datos; no es un error. |
+| Mis números no coinciden con las diapositivas | Se usó `load(refresh=True)`, que trae los datos de hoy con las revisiones del BCRP. Con `load()` se vuelve a la copia congelada. |
 
 ## Datos
 
-Las series vienen de la API del BCRP y se descargan al vuelo. Cada carpeta
-guarda además una copia en `data/`, que se usa automáticamente si la API no
-responde, de modo que los notebooks corren siempre, también sin internet.
+Todo el curso usa una sola base, [`data/macro_peru.csv`](data/macro_peru.csv):
+14 series trimestrales de Perú y de Estados Unidos, del BCRP y de FRED, en
+niveles. Es una copia congelada, así que todos reproducen exactamente los números
+de las diapositivas, con o sin internet. El código, la unidad, la fuente y la
+fecha de descarga de cada serie están en
+[`data/diccionario.csv`](data/diccionario.csv).
+
+Los notebooks la leen con `course_data.py`, que está en la raíz:
+
+```python
+import sys; sys.path.append("..")     # desde la carpeta de una sesión
+from course_data import load, yoy
+
+df = load()                           # niveles trimestrales, todas las series
+g = yoy(df[["pbi", "ipc"]])           # variación % interanual
+```
+
+Para trabajar con los datos más recientes, `load(refresh=True)` los descarga de
+las APIs sin tocar la copia congelada. Ninguna de las dos fuentes pide clave.
 
 ## Referencia
 
