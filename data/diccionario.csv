@@ -1,0 +1,15 @@
+serie,descripcion,unidad,fuente,codigo,frecuencia_origen,desde,hasta,descargado
+pbi,PBI real,millones de S/ de 2007,BCRP,PN02538AQ,trimestral,1979Q1,2026Q2,2026-10-03
+invpriv,Inversión bruta fija privada,millones de S/ de 2007,BCRP,PN02533AQ,trimestral,1979Q1,2026Q2,2026-10-03
+ipc,"Índice de precios al consumidor, Lima Metropolitana",índice dic. 2021 = 100,BCRP,PN38705PM,mensual,1991Q1,2026Q2,2026-10-03
+int,Tasa de interés interbancaria promedio,% anual,BCRP,PN07819NM,mensual,1995Q4,2026Q2,2026-10-03
+tpm,Tasa de referencia de la política monetaria,% anual,BCRP,PD04722MM,mensual,2003Q4,2026Q3,2026-10-03
+tdi,Términos de intercambio,índice 2007 = 100,BCRP,PN38923BM,mensual,1996Q1,2026Q2,2026-10-03
+ipx,Índice de precios de exportación,índice 2007 = 100,BCRP,PN38915BM,mensual,1996Q1,2026Q2,2026-10-03
+icgc,"Ingresos corrientes del gobierno central, en términos reales",millones de S/ de dic. 2021,BCRP,PN38689FM,mensual,1995Q1,2026Q2,2026-10-03
+tc,Tipo de cambio bancario promedio,S/ por US$,BCRP,PN01210PM,mensual,1995Q1,2026Q2,2026-10-03
+usgdp,PBI real de Estados Unidos,miles de millones de US$ de 2017,FRED,GDPC1,trimestral,1947Q1,2026Q2,2026-10-03
+uscpi,Índice de precios al consumidor de Estados Unidos,índice 1982-84 = 100,FRED,CPIAUCSL,mensual,1947Q1,2026Q2,2026-10-03
+fed,Tasa de fondos federales,% anual,FRED,FEDFUNDS,mensual,1954Q3,2026Q3,2026-10-03
+vix,Índice de volatilidad implícita VIX,puntos,FRED,VIXCLS,diaria,1990Q1,2026Q3,2026-10-03
+cobre,Precio internacional del cobre,US$ por tonelada métrica,FRED,PCOPPUSDM,mensual,1992Q1,2026Q2,2026-10-03
