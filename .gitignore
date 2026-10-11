@@ -40,7 +40,6 @@ dist/
 slides/
 # La base del curso (data/ en la raíz) se versiona; las copias por sesión, no.
 /session*/data/
-session3/
 
 # Material de trabajo que no se distribuye
 papers/
