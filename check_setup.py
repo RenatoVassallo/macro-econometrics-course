@@ -1,13 +1,61 @@
 """Comprueba que el entorno del curso está listo.
 
-Uso:  python check_setup.py
+Uso:  python check_setup.py        (con uv: uv run python check_setup.py)
+
+Si se ejecuta con un Python que no tiene los paquetes del curso (por ejemplo, una
+terminal abierta antes de `uv sync`) y el entorno del curso existe, se vuelve a
+ejecutar con ese entorno y explica cómo activarlo en la terminal.
 """
 import importlib
+import importlib.util
+import os
+import re
+import subprocess
 import sys
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent
 REQUIRED = ["numpy", "pandas", "scipy", "matplotlib", "statsmodels", "tqdm", "MacroPy"]
+MACROPY_MIN = (0, 3, 0)
 OK, BAD = "  [ok] ", "  [!!] "
+RELAUNCHED = "CHECK_SETUP_RELAUNCHED"      # evita relanzar más de una vez
+
+
+def course_env():
+    """Carpeta e intérprete del entorno del curso, si existe y no es el actual."""
+    for env in filter(None, [os.environ.get("UV_PROJECT_ENVIRONMENT"), ROOT / ".venv"]):
+        env = Path(env) if Path(env).is_absolute() else ROOT / env
+        if Path(sys.prefix).resolve() == env.resolve():
+            return None                       # ya estamos en él
+        for exe in (env / "bin" / "python", env / "Scripts" / "python.exe"):
+            if exe.exists():
+                return env, exe
+    return None
+
+
+def relaunch():
+    """Vuelve a ejecutar el chequeo con el entorno del curso cuando el Python
+    actual no tiene MacroPy. Devuelve el código de salida, o None si no hace falta."""
+    if os.environ.get(RELAUNCHED) or importlib.util.find_spec("MacroPy") is not None:
+        return None
+    found = course_env()
+    if found is None:
+        return None
+    env, exe = found
+    try:
+        shown = env.relative_to(Path.cwd())
+    except ValueError:
+        shown = env
+    activate = (f"{shown}\\Scripts\\Activate.ps1" if os.name == "nt"
+                else f"source {shown}/bin/activate")
+    print(f"\nEsta terminal usa {sys.executable}, que no tiene los paquetes del curso.\n"
+          f"Compruebo con el entorno del curso ({shown}). Para que la terminal lo use:\n"
+          f"    {activate}\n"
+          "o abra una terminal nueva en VS Code (o Developer: Reload Window).", flush=True)
+    code = subprocess.call([str(exe), str(ROOT / "check_setup.py")],
+                           env={**os.environ, RELAUNCHED: "1"})
+    print(f"Recuerde: esta terminal sigue sin el entorno; actívelo con {activate}\n")
+    return code
 
 
 def check_python():
@@ -34,17 +82,27 @@ def check_packages():
 
 
 def check_macropy():
+    minimo = ".".join(map(str, MACROPY_MIN))
     try:
-        from MacroPy import BayesianVAR, ClassicVAR  # noqa: F401
+        import MacroPy
+    except ImportError:
+        return False                       # check_packages ya lo reportó
+    m = re.match(r"(\d+)\.(\d+)\.(\d+)", MacroPy.__version__)
+    if m is None or tuple(map(int, m.groups())) < MACROPY_MIN:
+        print(BAD + f"MacroPy {MacroPy.__version__} es anterior a {minimo}: vuelva a ejecutar "
+              "bash setup_env.sh (o uv sync)")
+        return False
+    try:
+        from MacroPy import BayesianVAR, ClassicVAR, set_style  # noqa: F401
     except ImportError as err:
         print(BAD + f"MacroPy está incompleto: {err}")
         return False
-    print(OK + "MacroPy expone BayesianVAR y ClassicVAR")
+    print(OK + f"MacroPy {MacroPy.__version__} expone BayesianVAR, ClassicVAR y set_style")
     return True
 
 
 def check_data():
-    sys.path.insert(0, str(Path(__file__).parent))
+    sys.path.insert(0, str(ROOT))
     try:
         from course_data import load, vintage, SERIES
         df = load()
@@ -72,4 +130,5 @@ def main():
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    code = relaunch()
+    raise SystemExit(main() if code is None else code)

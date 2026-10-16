@@ -80,6 +80,16 @@ cd macro-econometrics-course
 uv sync
 ```
 
+`uv sync` crea el entorno en `.venv`, pero no lo activa en la terminal que ya estaba abierta.
+Abre una terminal nueva en VS Code (o `Developer: Reload Window`), actívalo con
+`source .venv/bin/activate`, o antepón `uv run` a cada comando: `uv run python check_setup.py`.
+
+### Si ya tenías el entorno instalado
+
+El curso usa MacroPy 0.3.0 desde la sesión 4. Para actualizar un entorno anterior basta con
+repetir la instalación: `bash setup_env.sh` (o `.\setup_env.ps1`), o `uv sync`. En un codespace
+ya creado, en la terminal: `pip install --user -r requirements.txt`.
+
 ## Comprobar que todo funciona
 
 Cualquiera sea la opción elegida, esto lo confirma en dos segundos:
@@ -89,7 +99,9 @@ python check_setup.py
 ```
 
 Revisa la versión de Python, los paquetes, MacroPy y la base de datos del
-curso, y dice exactamente qué falta si algo no está.
+curso, y dice exactamente qué falta si algo no está. Si la terminal usa otro
+Python pero el entorno `.venv` existe, la comprobación se hace con `.venv` y te
+dice cómo activarlo.
 
 ## Si algo falla
 
@@ -98,6 +110,8 @@ curso, y dice exactamente qué falta si algo no está.
 | `ModuleNotFoundError: No module named 'MacroPy'` | El notebook está usando otro intérprete. Seleccionar el kernel de `.venv` (arriba a la derecha en VS Code). |
 | `ModuleNotFoundError: No module named 'course_data'` | El kernel arrancó fuera de la carpeta de la sesión. Abrir el notebook desde ella; desde la terminal, `cd session1` antes de abrir Jupyter. |
 | El instalador rechaza `macropy` | La versión de Python no es 3.11. Verificar con `python --version`. |
+| `check_setup.py` dice que la terminal no tiene los paquetes y comprueba con `.venv` | La terminal se abrió antes de crear el entorno. Activarlo con `source .venv/bin/activate` (Windows: `.venv\Scripts\Activate.ps1`) o abrir una terminal nueva; en VS Code, `Developer: Reload Window`. |
+| `check_setup.py` dice que MacroPy es anterior a 0.3.0 | El entorno es de antes de la actualización. Repetir `bash setup_env.sh` (o `uv sync`; en Codespaces, `pip install --user -r requirements.txt`). |
 | Mis números no coinciden con las diapositivas | Se usó `load(refresh=True)`, que trae los datos de hoy con las revisiones del BCRP. Con `load()` se vuelve a la copia congelada. |
 
 ## Datos
