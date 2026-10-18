@@ -19,10 +19,11 @@ scipy>=1.15,<2
 matplotlib>=3.8,<4
 statsmodels>=0.14.4,<0.15
 tqdm>=4.66,<5
+plotly>=5.24,<8
 
 # Ejecución de notebooks desde script (uso del docente)
 nbclient>=0.10,<1
 nbformat>=5.10,<6
 
 # Toolbox del curso
-macropy @ https://github.com/RenatoVassallo/MacroPy/releases/download/0.3.0/macropy-0.3.0-py3-none-any.whl
+macropy @ https://github.com/RenatoVassallo/MacroPy/releases/download/0.3.2/macropy-0.3.2-py3-none-any.whl

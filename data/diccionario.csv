@@ -13,3 +13,7 @@ uscpi,Índice de precios al consumidor de Estados Unidos,índice 1982-84 = 100,F
 fed,Tasa de fondos federales,% anual,FRED,FEDFUNDS,mensual,1954Q3,2026Q3,2026-10-03
 vix,Índice de volatilidad implícita VIX,puntos,FRED,VIXCLS,diaria,1990Q1,2026Q3,2026-10-03
 cobre,Precio internacional del cobre,US$ por tonelada métrica,FRED,PCOPPUSDM,mensual,1992Q1,2026Q2,2026-10-03
+cdbcrp,Tasa de interés de los certificados de depósito del BCRP (promedio de los meses con subasta),% anual,BCRP,PN06503OM,mensual,1992Q2,2026Q3,2026-10-16
+nino12,"Anomalía de la temperatura superficial del mar, región Niño 1+2",°C respecto al promedio 1981-2010 (ERSST v6),NOAA,nina1,mensual,1948Q1,2026Q3,2026-10-16
+nino34,"Anomalía de la temperatura superficial del mar, región Niño 3.4",°C respecto al promedio 1981-2010 (ERSST v6),NOAA,nina34,mensual,1948Q1,2026Q3,2026-10-16
+pbi_sa,PBI real desestacionalizado (X-13ARIMA-SEATS aplicado a pbi en la copia congelada),millones de S/ de 2007,BCRP,PN02538AQ,trimestral,1979Q1,2026Q2,2026-10-16
