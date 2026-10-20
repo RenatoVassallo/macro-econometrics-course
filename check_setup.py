@@ -16,7 +16,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 REQUIRED = ["numpy", "pandas", "scipy", "matplotlib", "statsmodels", "tqdm", "plotly", "MacroPy"]
-MACROPY_MIN = (0, 3, 2)
+MACROPY_MIN = (0, 3, 3)
 OK, BAD = "  [ok] ", "  [!!] "
 RELAUNCHED = "CHECK_SETUP_RELAUNCHED"      # evita relanzar más de una vez
 

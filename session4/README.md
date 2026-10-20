@@ -50,8 +50,9 @@ los notebooks de esta sesión no lo usan, queda para ejercicios en niveles).
 - **En las láminas**: los modelos, las lecturas aplicadas (Alessandri y Mumtaz, 2019; Sánchez y
   Vassallo, 2026; Primiceri, 2005; Chan y Eisenstat, 2018; Rodríguez, Vassallo y Castillo, 2023;
   Sánchez y Vassallo, 2023) y las **instrucciones** de las dos aplicaciones: qué estimar y qué
-  preguntas responder. Las láminas no adelantan los resultados de las aplicaciones: se obtienen
-  al correr los notebooks, que cierran con sus ideas centrales.
+  preguntas responder. Las láminas no adelantan los resultados de las aplicaciones, salvo las
+  volatilidades estimadas que cierran la sección de volatilidad estocástica: se obtienen al correr
+  los notebooks, que cierran con sus ideas centrales.
 - `session4_A_tvar.ipynb` (aplicación A): las escalas de Lenza y Primiceri, el umbral, el rezago
   y los trimestres Niño, y qué cambia con la muestra hasta 2019, sin tratamiento o con dummies;
   respuestas por régimen a un calentamiento de 1 °C, con asimetrías de tamaño y signo; la densidad
@@ -66,10 +67,10 @@ los notebooks de esta sesión no lo usan, queda para ejercicios en niveles).
   tamaño y transmisión; FEVD a 20 trimestres y descomposición histórica por fecha; y una
   evaluación de pronósticos 2024-2026 con origen en 2023Q4.
 - Los datos salen de la base del curso, `data/macro_peru.csv`, a través de `course_data.py`.
-- Requiere `MacroPy` 0.3.2 (gráficos en grilla y FEVD a 20 pasos) y `plotly`; `python
-  check_setup.py` lo verifica.
+- Requiere `MacroPy` 0.3.3 (gráficos en grilla, FEVD a 20 pasos y FEVD que no depende de
+  `irf_1std`) y `plotly`; `python check_setup.py` lo verifica.
 - Tiempo de corrida en un portátil reciente: unos 20 segundos el notebook A y un minuto y medio el B.
-- Las diapositivas se distribuyen aparte, por el Aula Virtual. Su figura propia se regenera con
+- Las diapositivas se distribuyen aparte, por el Aula Virtual. Sus figuras propias se regeneran con
   `slides/figures.py`.
 
 ## Referencias

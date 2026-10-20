@@ -82,7 +82,7 @@ uv sync
 
 ### Si ya tenías el entorno instalado
 
-El curso usa MacroPy 0.3.2 y `plotly` desde la sesión 4. Para actualizar un entorno anterior basta
+El curso usa MacroPy 0.3.3 y `plotly` desde la sesión 4. Para actualizar un entorno anterior basta
 con repetir la instalación: `bash setup_env.sh` (o `.\setup_env.ps1`), o `uv sync`. En un
 codespace ya creado, en la terminal: `pip install --user -r requirements.txt`.
 
@@ -104,7 +104,7 @@ curso, y dice exactamente qué falta si algo no está.
 | `ModuleNotFoundError: No module named 'MacroPy'` | El notebook está usando otro intérprete. Seleccionar el kernel de `.venv` (arriba a la derecha en VS Code). |
 | `ModuleNotFoundError: No module named 'course_data'` | El kernel arrancó fuera de la carpeta de la sesión. Abrir el notebook desde ella; desde la terminal, `cd session1` antes de abrir Jupyter. |
 | El instalador rechaza `macropy` | La versión de Python no es 3.11. Verificar con `python --version`. |
-| `check_setup.py` dice que MacroPy es anterior a 0.3.2, o que falta `plotly` | El entorno es de antes de la actualización. Repetir `bash setup_env.sh` (o `uv sync`; en Codespaces, `pip install --user -r requirements.txt`). |
+| `check_setup.py` dice que MacroPy es anterior a 0.3.3, o que falta `plotly` | El entorno es de antes de la actualización. Repetir `bash setup_env.sh` (o `uv sync`; en Codespaces, `pip install --user -r requirements.txt`). |
 | Las superficies 3D de la sesión 4 no aparecen | Se ven en VS Code, Codespaces y JupyterLab, no en la vista estática de GitHub. Si la celda falla con `No module named 'plotly'`, repetir la instalación. |
 | Mis números no coinciden con las diapositivas | Se usó `load(refresh=True)`, que trae los datos de hoy con las revisiones del BCRP. Con `load()` se vuelve a la copia congelada. |
 

@@ -26,4 +26,4 @@ nbclient>=0.10,<1
 nbformat>=5.10,<6
 
 # Toolbox del curso
-macropy @ https://github.com/RenatoVassallo/MacroPy/releases/download/0.3.2/macropy-0.3.2-py3-none-any.whl
+macropy @ https://github.com/RenatoVassallo/MacroPy/releases/download/0.3.3/macropy-0.3.3-py3-none-any.whl

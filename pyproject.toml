@@ -3,7 +3,7 @@ name = "macro-econometrics-course"
 version = "0.1.0"
 description = "Material reproducible para curso de macroeconometría aplicada en python"
 readme = "README.md"
-# MacroPy 0.3.2 exige Python 3.11: fijamos la misma ventana para que el
+# MacroPy 0.3.3 exige Python 3.11: fijamos la misma ventana para que el
 # resolutor falle temprano y con un mensaje claro, no a mitad de clase.
 requires-python = ">=3.11,<3.12"
 dependencies = [
@@ -24,5 +24,5 @@ dependencies = [
     "nbclient>=0.10,<1",
     "nbformat>=5.10,<6",
     # Toolbox del curso
-    "macropy @ https://github.com/RenatoVassallo/MacroPy/releases/download/0.3.2/macropy-0.3.2-py3-none-any.whl",
+    "macropy @ https://github.com/RenatoVassallo/MacroPy/releases/download/0.3.3/macropy-0.3.3-py3-none-any.whl",
 ]
