@@ -82,9 +82,17 @@ uv sync
 
 ### Si ya tenías el entorno instalado
 
-El curso usa MacroPy 0.3.3 y `plotly` desde la sesión 4. Para actualizar un entorno anterior basta
-con repetir la instalación: `bash setup_env.sh` (o `.\setup_env.ps1`), o `uv sync`. En un
-codespace ya creado, en la terminal: `pip install --user -r requirements.txt`.
+El curso usa MacroPy 0.3.3 y `plotly` desde la sesión 4. MacroPy 0.3.3 se volvió a publicar el
+23 de octubre con la exogeneidad de bloque de `TimeVaryingVAR`; quien lo instaló antes tiene la
+copia vieja, y ni pip ni uv la reemplazan solos porque la versión es la misma. Para actualizar:
+
+- con los scripts: repetir `bash setup_env.sh` (o `.\setup_env.ps1`), que ahora reinstala MacroPy;
+- con uv: `uv sync --upgrade-package macropy --refresh-package macropy --reinstall-package macropy`;
+- en un codespace ya creado, en la terminal:
+  `pip install --user -r requirements.txt` y luego
+  `pip install --user --force-reinstall --no-deps --no-cache-dir "$(grep '^macropy' requirements.txt)"`.
+
+`python check_setup.py` detecta la copia vieja y muestra el comando que corresponde.
 
 ## Comprobar que todo funciona
 
@@ -105,6 +113,7 @@ curso, y dice exactamente qué falta si algo no está.
 | `ModuleNotFoundError: No module named 'course_data'` | El kernel arrancó fuera de la carpeta de la sesión. Abrir el notebook desde ella; desde la terminal, `cd session1` antes de abrir Jupyter. |
 | El instalador rechaza `macropy` | La versión de Python no es 3.11. Verificar con `python --version`. |
 | `check_setup.py` dice que MacroPy es anterior a 0.3.3, o que falta `plotly` | El entorno es de antes de la actualización. Repetir `bash setup_env.sh` (o `uv sync`; en Codespaces, `pip install --user -r requirements.txt`). |
+| `check_setup.py` dice que la copia de MacroPy 0.3.3 es anterior al 23 de octubre, o `TimeVaryingVAR` rechaza `b_exo` | Ejecutar el comando que muestra `check_setup.py` (ver «Si ya tenías el entorno instalado»). |
 | Las superficies 3D de la sesión 4 no aparecen | Se ven en VS Code, Codespaces y JupyterLab, no en la vista estática de GitHub. Si la celda falla con `No module named 'plotly'`, repetir la instalación. |
 | Mis números no coinciden con las diapositivas | Se usó `load(refresh=True)`, que trae los datos de hoy con las revisiones del BCRP. Con `load()` se vuelve a la copia congelada. |
 

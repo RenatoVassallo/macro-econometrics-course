@@ -67,6 +67,11 @@ Titulo "3. Instalando los paquetes del curso"
 if ($LASTEXITCODE -ne 0) {
     Fatal "falló la instalación. Si está detrás de un proxy o sin internet, vuelva a intentarlo."
 }
+# pip no reemplaza un paquete instalado desde la misma URL: si MacroPy se volvió a publicar con la
+# misma versión, solo --force-reinstall trae la copia nueva
+$MacroPyReq = (Get-Content (Join-Path $Aqui "requirements.txt") | Where-Object { $_ -match '^macropy' }).Trim()
+& $VPy -m pip install --quiet --force-reinstall --no-deps --no-cache-dir $MacroPyReq
+if ($LASTEXITCODE -ne 0) { Fatal "no se pudo descargar MacroPy; revise la conexión y vuelva a intentarlo." }
 Ok "paquetes instalados"
 
 # ---------------------------------------------------------------- 4. Kernel

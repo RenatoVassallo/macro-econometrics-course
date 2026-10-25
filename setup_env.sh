@@ -77,6 +77,11 @@ if ! "$VPY" -m pip install --quiet -r "$AQUI/requirements.txt"; then
   fatal "falló la instalación. Si está detrás de un proxy o sin internet,
   vuelva a intentarlo; si el error menciona 'macropy', revise su versión de Python."
 fi
+# pip no reemplaza un paquete instalado desde la misma URL: si MacroPy se volvió a publicar con la
+# misma versión, solo --force-reinstall trae la copia nueva
+MACROPY_REQ="$(grep -i '^macropy' "$AQUI/requirements.txt" | tr -d '\r')"
+"$VPY" -m pip install --quiet --force-reinstall --no-deps --no-cache-dir "$MACROPY_REQ" \
+  || fatal "no se pudo descargar MacroPy; revise la conexión y vuelva a intentarlo."
 ok "$("$VPY" -m pip list 2>/dev/null | wc -l | tr -d ' ') paquetes instalados"
 
 # ---------------------------------------------------------------- 4. Kernel

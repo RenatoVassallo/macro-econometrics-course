@@ -8,6 +8,7 @@ ejecutar con ese entorno y explica cómo activarlo en la terminal.
 """
 import importlib
 import importlib.util
+import inspect
 import os
 import re
 import subprocess
@@ -81,6 +82,17 @@ def check_packages():
     return ok
 
 
+def refresh_command():
+    """Comando que reemplaza una copia vieja de MacroPy con la misma versión: ni pip ni uv
+    reinstalan un paquete que ya está instalado desde la misma URL."""
+    if (ROOT / "uv.lock").exists():
+        return "uv sync --upgrade-package macropy --refresh-package macropy --reinstall-package macropy"
+    req = next(line.strip() for line in (ROOT / "requirements.txt").read_text().splitlines()
+               if line.lower().startswith("macropy"))
+    user = " --user" if sys.prefix == sys.base_prefix else ""     # Codespaces: sin venv
+    return f'python -m pip install{user} --force-reinstall --no-deps --no-cache-dir "{req}"'
+
+
 def check_macropy():
     minimo = ".".join(map(str, MACROPY_MIN))
     try:
@@ -93,11 +105,16 @@ def check_macropy():
               "bash setup_env.sh (o uv sync)")
         return False
     try:
-        from MacroPy import BayesianVAR, ClassicVAR, set_style  # noqa: F401
+        from MacroPy import BayesianVAR, ClassicVAR, TimeVaryingVAR, set_style  # noqa: F401
     except ImportError as err:
         print(BAD + f"MacroPy está incompleto: {err}")
         return False
-    print(OK + f"MacroPy {MacroPy.__version__} expone BayesianVAR, ClassicVAR y set_style")
+    if "b_exo" not in inspect.signature(TimeVaryingVAR).parameters:
+        print(BAD + f"esta copia de MacroPy {MacroPy.__version__} es anterior a la del 23 de octubre "
+              "(TimeVaryingVAR sin b_exo). Reinstálela con:\n" + "        " + refresh_command())
+        return False
+    print(OK + f"MacroPy {MacroPy.__version__} expone BayesianVAR, ClassicVAR, TimeVaryingVAR(b_exo) "
+          "y set_style")
     return True
 
 
